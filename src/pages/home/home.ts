@@ -21,7 +21,7 @@ export class HomePage {
   items: Observable<Items[]>; // read collection
 
   constructor(public navCtrl: NavController, db: AngularFirestore) {
-    this.itemsCollection = db.collection<Items>('item'); //ref()
+    this.itemsCollection = db.collection<Items>('concerts'); //ref()
 
     this.items = this.itemsCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
