@@ -15,10 +15,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetailsPage {
 
-  itemName: String
+  city: String
+  date: String
+  name: String
+  image: String
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.itemName = navParams.data.item.item
-    console.log(navParams.data.item.item)
+    let concert = navParams.data.item
+    console.log(concert.name)
+    this.city = concert.city
+    this.date = concert.date
+    this.name = concert.name
+    this.image = concert.url_image
   }
 }

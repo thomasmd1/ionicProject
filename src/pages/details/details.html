@@ -7,13 +7,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>details</ion-title>
+    <ion-title>{{name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h1>details</h1>
-  <p>{{itemName}}</p>
+  <ion-card>
+    <img src="{{image}}" />
+    <ion-card-content>
+      <ion-card-title>
+        {{name}}
+      </ion-card-title>
+    </ion-card-content>
+
+    <ion-item>
+      <ion-icon name="wine" item-left large padding></ion-icon>
+      <h2>{{date}}</h2>
+      <p>{{city}}</p>
+    </ion-item>
+
+  </ion-card>
 </ion-content>
