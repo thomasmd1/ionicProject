@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetailsPage } from '../pages/details/details';
 import { AuthPage } from '../pages/auth/auth';
+import { TabsPage } from '../pages/tabs/tabs';
 
 import { Provider } from '../providers/provider/provider';
 import { AuthProvider } from '../providers/auth/auth';
@@ -30,7 +31,8 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     DetailsPage,
-    AuthPage
+    AuthPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,9 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     DetailsPage,
-    AuthPage
+    AuthPage,
+    TabsPage
+
   ],
   providers: [
     StatusBar,
