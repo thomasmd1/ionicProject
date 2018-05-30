@@ -6,12 +6,14 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import {Camera} from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetailsPage } from '../pages/details/details';
 import { AuthPage } from '../pages/auth/auth';
 import { TabsPage } from '../pages/tabs/tabs';
+import { PhotoPage } from '../pages/photo/photo'
 
 import { Provider } from '../providers/provider/provider';
 import { AuthProvider } from '../providers/auth/auth';
@@ -32,7 +34,8 @@ export const firebaseConfig = {
     HomePage,
     DetailsPage,
     AuthPage,
-    TabsPage
+    TabsPage,
+    PhotoPage
   ],
   imports: [
     BrowserModule,
@@ -47,12 +50,15 @@ export const firebaseConfig = {
     HomePage,
     DetailsPage,
     AuthPage,
-    TabsPage
+    TabsPage,
+    PhotoPage
+
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Provider,
     AuthProvider,
