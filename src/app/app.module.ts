@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetailsPage } from '../pages/details/details';
+import { TabsPage} from '../pages/tabs/tabs';
 
 import { Provider } from '../providers/provider/provider';
 
@@ -26,7 +27,8 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    DetailsPage
+    DetailsPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,9 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    DetailsPage
+    DetailsPage,
+    TabsPage
+    
   ],
   providers: [
     StatusBar,

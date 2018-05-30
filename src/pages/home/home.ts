@@ -36,6 +36,8 @@ export class HomePage {
     })
   }
 
+
+
   itemSelected(item) {
     this.navCtrl.push(DetailsPage, { item })
   }
