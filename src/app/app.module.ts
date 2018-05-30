@@ -10,8 +10,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetailsPage } from '../pages/details/details';
+import { AuthPage } from '../pages/auth/auth';
 
 import { Provider } from '../providers/provider/provider';
+import { AuthProvider } from '../providers/auth/auth';
+import { ConcertProvider } from '../providers/concert/concert';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCm7L7ZsrYZNylgIT4Uew7CNU1tPvtqYOU",
@@ -26,7 +29,8 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    DetailsPage
+    DetailsPage,
+    AuthPage
   ],
   imports: [
     BrowserModule,
@@ -39,13 +43,16 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    DetailsPage
+    DetailsPage,
+    AuthPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    Provider
+    Provider,
+    AuthProvider,
+    ConcertProvider
   ]
 })
 export class AppModule { }

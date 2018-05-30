@@ -14,6 +14,19 @@
 
 
 <ion-content padding>
+  <div *ngIf="isOnline; else elsetag">
+    <button ion-button color="secondary" full icon-left ng-show="isOnline">
+      <ion-icon name="beer"></ion-icon>
+      Je participe
+    </button>
+  </div>
+  <ng-template #elsetag>
+    <button ion-button color="danger" full icon-left ng-show="!isOnline">
+      <ion-icon name="log-in"></ion-icon>
+      Vous devez être connecté pour participer
+    </button>
+  </ng-template>
+
   <ion-card>
     <img src="{{image}}" />
     <ion-card-content>

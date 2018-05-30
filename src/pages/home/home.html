@@ -3,11 +3,31 @@
     <ion-title>
       Ellie Goulding
     </ion-title>
+
+
+    <!-- <ion-buttons end [hidden]="isOnline">
+      <button ion-button icon-only (click)="goToLogin()">
+        <ion-icon name="log-in"></ion-icon> Login
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end [hidden]="!isOnline">
+      <button ion-button icon-only (click)="goToLogin()">
+        <ion-icon name="log-out"></ion-icon> Logout
+      </button>
+    </ion-buttons> -->
+
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-card>
+    <ion-card-content>
+      <h1 text-center>
+        <strong>Ajouter un concert</strong>
+      </h1>
+    </ion-card-content>
+  </ion-card>
   <ion-card *ngFor="let item of items | async" (click)="itemSelected(item)">
     <img src="{{item.url_image}}" />
     <ion-card-content>

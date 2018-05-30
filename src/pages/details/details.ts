@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthPage } from "../../pages/auth/auth"
+import firebase from "firebase"
 /**
  * Generated class for the DetailsPage page.
  *
@@ -27,6 +29,7 @@ export class DetailsPage {
   map: any;
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
+  isOnline: Boolean
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     let concert = navParams.data.item
@@ -37,6 +40,13 @@ export class DetailsPage {
     this.image = concert.url_image
     this.lat = concert.lat
     this.long = concert.lon
+
+
+    if (firebase.auth().currentUser != null) {
+      this.isOnline = true
+    } else {
+      this.isOnline = false
+    }
   }
 
   ionViewDidLoad() {
@@ -58,5 +68,9 @@ export class DetailsPage {
     });
 
     this.directionsDisplay.setMap(this.map);
+  }
+
+  goToLogin() {
+    this.navCtrl.push(AuthPage)
   }
 }
