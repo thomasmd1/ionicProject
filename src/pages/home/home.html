@@ -5,17 +5,17 @@
     </ion-title>
 
 
-    <!-- <ion-buttons end [hidden]="isOnline">
+    <ion-buttons end [hidden]="isOnline">
       <button ion-button icon-only (click)="goToLogin()">
         <ion-icon name="log-in"></ion-icon> Login
       </button>
     </ion-buttons>
 
     <ion-buttons end [hidden]="!isOnline">
-      <button ion-button icon-only (click)="goToLogin()">
+      <button ion-button icon-only (click)="logout()">
         <ion-icon name="log-out"></ion-icon> Logout
       </button>
-    </ion-buttons> -->
+    </ion-buttons>
 
   </ion-navbar>
 </ion-header>
@@ -39,6 +39,6 @@
       </p>
     </ion-card-content>
   </ion-card>
-  
+
 
 </ion-content>

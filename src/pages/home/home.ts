@@ -66,4 +66,8 @@ export class HomePage {
   goToLogin() {
     this.navCtrl.push(AuthPage)
   }
+
+  logout() {
+    this.authServc.logoutUser().then(cb => { console.log("logout") })
+  }
 }
