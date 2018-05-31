@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Camera, CameraOptions } from "@ionic-native/camera";
+import firebase from "firebase"
 
 /**
  * Generated class for the PhotoPage page.
@@ -72,28 +73,44 @@ export class PhotoPage {
         this.base64Image = "data:image/jpeg;base64," + imageData;
         this.photos.push(this.base64Image);
         this.photos.reverse();
-        //this.sendData(imageData);
+        this.sendData(imageData);
       },
       err => {
         console.log(err);
       }
     );
+
+    let confirm = this.alertCtrl.create({
+      title: "La photo à été partagée, elle sera validée par un Admin",
+      message: "",
+      buttons: [
+        {
+          text: "Ok !",
+          handler: () => {
+            console.log("OK");
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
-  /*sendData(imageData) {
+  sendData(imageData) {
     this.userData.imageB64 = imageData;
-    this.userData.user_id = "1";
-    this.userData.token = "222";
+
+    //this.userData.user_id = "1";
+    //this.userData.token = "222";
+
     console.log(this.userData);
-    this.authService.postData(this.userData, "userImage").then(
+    /*this.authService.postData(this.userData, "userImage").then(
       result => {
         this.responseData = result;
       },
       err => {
         // Error log
       }
-    );
-  }*/
+    );*/
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PhotoPage');
