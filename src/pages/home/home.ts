@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController} from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -24,7 +24,7 @@ export class HomePage {
   items: Observable<Items[]>; // read collection
   isOnline: Boolean = false
 
-  constructor(public navCtrl: NavController, db: AngularFirestore, public authServc: AuthProvider) {
+  constructor(public navCtrl: NavController, db: AngularFirestore, public authServc: AuthProvider,private alertCtrl: AlertController) {
     this.UserIsOnline()
     this.itemsCollection = db.collection<Items>('concerts'); //ref()
 
@@ -58,9 +58,34 @@ export class HomePage {
     }
   }
 
+  deletePhoto(item) {
+    let confirm = this.alertCtrl.create({
+      title: "Etes vous sûr de vouloir supprimer le concert ? 😱",
+      message: "",
+      buttons: [
+        {
+          text: "Non 👎🏻",
+          handler: () => {
+            console.log("Pas OK");
+          }
+        },
+        {
+          text: "Oui 👍🏻",
+          handler: () => {
+            console.log("/concerts/"+item.id);
+            console.log(item.id);
+            this.itemsCollection.doc(item.id).delete().then((pd) => console.log(pd)).catch((pd) => console.log(pd));
+          }
+        }
+        
+      ]
+    });
+    confirm.present();
+  }
 
   itemSelected(item) {
     this.navCtrl.push(DetailsPage, { item })
+    console.log(item)
   }
 
   goToLogin() {

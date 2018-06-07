@@ -50,6 +50,7 @@ export class PhotoPage {
             this.photos.splice(index, 1);
           }
         }
+        
       ]
     });
     confirm.present();
