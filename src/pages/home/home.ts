@@ -9,6 +9,7 @@ import { DetailsPage } from "../../pages/details/details"
 import { AuthPage } from "../../pages/auth/auth"
 import { AuthProvider } from "../../providers/auth/auth"
 import firebase from "firebase"
+import { AddPage } from '../add/add';
 
 interface Items {
 
@@ -75,6 +76,7 @@ export class HomePage {
             console.log("/concerts/"+item.id);
             console.log(item.id);
             this.itemsCollection.doc(item.id).delete().then((pd) => console.log(pd)).catch((pd) => console.log(pd));
+            this.navCtrl.push(HomePage)
           }
         }
         
@@ -86,6 +88,10 @@ export class HomePage {
   itemSelected(item) {
     this.navCtrl.push(DetailsPage, { item })
     console.log(item)
+  }
+
+  addItem(){
+    this.navCtrl.push(AddPage)
   }
 
   goToLogin() {
