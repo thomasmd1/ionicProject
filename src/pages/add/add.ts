@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { ConcertProvider } from "../../providers/concert/concert"
 import firebase from "firebase"
 
 /**
@@ -21,10 +22,9 @@ interface Items {
 })
 export class AddPage {
 
-  itemsCollection: AngularFirestoreCollection<Items>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public db: AngularFirestore){
-    this.itemsCollection = db.collection<Items>('concerts'); //ref()
+  constructor(public navCtrl: NavController,public view:ViewController, public navParams: NavParams, public alertCtrl: AlertController, public provider: ConcertProvider){
+    
   }
 
   ionViewDidLoad() {
@@ -46,17 +46,9 @@ export class AddPage {
           text: "Oui 👍🏻",
           handler: () => {
             console.log("OK");
-            this.itemsCollection.doc("pd").set({
-              city: city,
-              date: date,
-              lat: lat,
-              lon: lon,
-              name: name,
-              url_image: url_image
-            })
-            .then(pd => console.log(pd))
-            .catch(pd => console.log(pd))
-            this.navCtrl.push(HomePage)
+            this.provider.add(city,date,lat,lon,name,url_image)
+            // this.navCtrl.push(HomePage)
+            this.view.dismiss()
           }
         }
         

@@ -11,6 +11,7 @@ import { AuthProvider } from "../../providers/auth/auth"
 import firebase from "firebase"
 import { AddPage } from '../add/add';
 
+
 interface Items {
 
 }
@@ -33,9 +34,6 @@ export class HomePage {
       return actions.map(a => {
         const data = a.payload.doc.data() as Items;
         const id = a.payload.doc.id;
-        /*affichage de l'id du document*/
-        console.log(a.payload.doc.id)
-        console.log("test" + a.payload.doc.data())
         return { id, ...data };
       })
     })
@@ -43,12 +41,10 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.UserIsOnline()
-    console.log("did load " + this.isOnline)
   }
 
   ionViewDidEnter() {
     this.UserIsOnline()
-    console.log("did enter " + this.isOnline)
   }
 
   UserIsOnline() {
@@ -57,32 +53,6 @@ export class HomePage {
     } else {
       this.isOnline = false
     }
-  }
-
-  deletePhoto(item) {
-    let confirm = this.alertCtrl.create({
-      title: "Etes vous sûr de vouloir supprimer le concert ? 😱",
-      message: "",
-      buttons: [
-        {
-          text: "Non 👎🏻",
-          handler: () => {
-            console.log("Pas OK");
-          }
-        },
-        {
-          text: "Oui 👍🏻",
-          handler: () => {
-            console.log("/concerts/"+item.id);
-            console.log(item.id);
-            this.itemsCollection.doc(item.id).delete();
-            this.navCtrl.push(HomePage)
-          }
-        }
-        
-      ]
-    });
-    confirm.present();
   }
 
   itemSelected(item) {
@@ -99,6 +69,6 @@ export class HomePage {
   }
 
   logout() {
-    this.authServc.logoutUser().then(cb => { console.log("logout") })
+    this.authServc.logoutUser().then(cb => { this.isOnline = false })
   }
 }

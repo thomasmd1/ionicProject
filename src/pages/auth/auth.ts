@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from "../../providers/auth/auth"
 import { HomePage } from "../../pages/home/home"
@@ -24,6 +24,7 @@ export class AuthPage {
     public navParams: NavParams,
     public authProvider: AuthProvider,
     public alertCtrl: AlertController,
+    public view:ViewController,
     formBuilder: FormBuilder) {
 
     this.loginForm = formBuilder.group({
@@ -42,38 +43,39 @@ export class AuthPage {
   loginUser() {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-    this.authProvider.loginUser(email, password).then(
-      authData => {
-        this.navCtrl.setRoot(HomePage);
-      },
-      error => {
-        if (error.code == "auth/user-not-found") {
-          this.authProvider.signupUser(email, password).then(authData => {
-            let alert = this.alertCtrl.create({
-              title: 'Success !',
-              subTitle: "Vous êtes connecté",
-              buttons: ['OK']
-            });
-            alert.present();
-            this.navCtrl.setRoot(HomePage);
-          }, error => {
-            console.log(error)
-            let alert = this.alertCtrl.create({
-              title: 'Error',
-              subTitle: error,
-              buttons: ['OK']
-            });
-            alert.present();
-          })
-        } else {
+
+    this.authProvider.loginUser(email, password).then(success => {
+      this.navCtrl.setRoot(HomePage);
+    })
+    .catch(error => {
+      if (error.code === "auth/user-not-found") {
+        this.authProvider.signupUser(email, password).then(authData => {
+          let alert = this.alertCtrl.create({
+            title: 'Success !',
+            subTitle: "Vous êtes connecté",
+            buttons: ['OK']
+          });
+          alert.present();
+          this.navCtrl.setRoot(HomePage);
+        }, error => {
+          console.log(error)
           let alert = this.alertCtrl.create({
             title: 'Error',
             subTitle: error,
             buttons: ['OK']
           });
           alert.present();
-        }
+        })
+      } else {
+        let alert = this.alertCtrl.create({
+          title: 'Error',
+          subTitle: error,
+          buttons: ['OK']
+        });
+        alert.present();
       }
-    );
+      
+    })
   }
 }
+

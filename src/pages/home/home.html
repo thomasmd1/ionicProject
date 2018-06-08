@@ -28,7 +28,7 @@
       </h1>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngFor="let item of items | async" (click)="itemSelected(item)">
+  <ion-card *ngFor="let item of items | async" (click)="itemSelected(item, true)">
     <img src="{{item.url_image}}" />
     <ion-card-content>
       <ion-card-title>
@@ -38,11 +38,6 @@
         {{item.date}} - {{item.city}}
       </p>
     </ion-card-content>
-      <button ion-button full outline ion-button color="danger" ion-button small full icon-left [hidden]="!isOnline" (click)="deletePhoto(item)">
-          <ion-icon name="trash"></ion-icon>
-          Supprimer le concert
-      </button>
-      
   </ion-card>
 
 

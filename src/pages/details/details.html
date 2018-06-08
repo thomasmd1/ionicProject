@@ -15,15 +15,15 @@
 
 <ion-content padding>
   <div *ngIf="isOnline; else elsetag">
-    <button ion-button color="secondary" full icon-left ng-show="isOnline">
-      <ion-icon name="beer"></ion-icon>
-      Je participe
+    <button ion-button full outline ion-button color="danger" ion-button small full icon-left (click)="deleteConcert()">
+      <ion-icon name="trash"></ion-icon>
+      Supprimer le concert
     </button>
   </div>
   <ng-template #elsetag>
     <button ion-button color="danger" full icon-left ng-show="!isOnline" (click)="goToLogin()">
       <ion-icon name="log-in"></ion-icon>
-      Vous devez être connecté pour participer
+      Vous devez être connecté pour supprimer
     </button>
   </ng-template>
 
