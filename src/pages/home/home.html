@@ -38,7 +38,7 @@
         {{item.date}} - {{item.city}}
       </p>
     </ion-card-content>
-      <button ion-button full outline ion-button color="danger" ion-button small full icon-left ng-show="isOnline" (click)="deletePhoto(item)">
+      <button ion-button full outline ion-button color="danger" ion-button small full icon-left [hidden]="!isOnline" (click)="deletePhoto(item)">
           <ion-icon name="trash"></ion-icon>
           Supprimer le concert
       </button>

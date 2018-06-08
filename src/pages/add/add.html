@@ -17,27 +17,27 @@
 <ion-content padding>
     <ion-item>
         <ion-label color="primary" floating>Ville :</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="city"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label color="primary" floating>Date du concert :</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="date"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label color="primary" floating>Latitude :</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="lat"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label color="primary" floating>Longitude :</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="lon"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label color="primary" floating>Nom du concert :</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="name"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label color="primary" floating>Joindre une image :</ion-label>
-        <ion-input></ion-input>
+        <ion-label color="primary" floating>Joindre une url d'image :</ion-label>
+        <ion-input [(ngModel)]="url_image"></ion-input>
     </ion-item>
-    <button ion-button round class = "button button-block" (click)="addConcert()">Valider</button>
+    <button ion-button round class = "button button-block" (click)="addConcert(city,date,lat,lon,name,url_image)">Valider</button>
 </ion-content>

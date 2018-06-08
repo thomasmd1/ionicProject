@@ -75,7 +75,7 @@ export class HomePage {
           handler: () => {
             console.log("/concerts/"+item.id);
             console.log(item.id);
-            this.itemsCollection.doc(item.id).delete().then((pd) => console.log(pd)).catch((pd) => console.log(pd));
+            this.itemsCollection.doc(item.id).delete();
             this.navCtrl.push(HomePage)
           }
         }
